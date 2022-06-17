@@ -1,0 +1,2 @@
+# Don't lint the build directory
+dist

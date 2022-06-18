@@ -7,9 +7,6 @@ const path = require('path');
 
 dotenv.config();
 
-// const commands = [
-//   new SlashCommandBuilder().setName('ping').setDescription('Replies with pong!')
-// ].map(command => command.toJSON());
 const commands = [];
 const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));

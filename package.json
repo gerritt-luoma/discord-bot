@@ -4,8 +4,8 @@
   "description": "A very basic discord bot full of random commands that I thought were funny or useful or both",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/bot.js",
-    "dev": "ts-node-dev --respawn --debounce=100 --exit-child src/bot.ts",
+    "start": "NODE_ENV=production node dist/bot.js",
+    "dev": "NODE_ENV=development ts-node-dev --respawn --debounce=100 --exit-child src/bot.ts",
     "build": "npx tsc"
   },
   "keywords": [

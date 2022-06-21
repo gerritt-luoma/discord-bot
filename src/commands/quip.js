@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { getOrCreateUser } = require('../db/user')
 
 const data = new SlashCommandBuilder()
   .setName('quip')
@@ -11,7 +12,9 @@ const data = new SlashCommandBuilder()
 module.exports = {
   data: data,
   async execute(interaction) {
-    console.log(interaction.options.getUser('user'))
+    const user = interaction.options.getUser('user') 
+    const createdUser = getOrCreateUser(user.id);
+    console.log(createdUser);
   }
 }
 

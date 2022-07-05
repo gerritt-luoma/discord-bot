@@ -21,7 +21,7 @@ const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
 (async () => {
   try {
     console.log('Loading commands.');
-    await rest.put(Routes.applicationGuildCommands(process.env.DISCORD_CLIENT_ID, process.env.DISCORD_GUILD_ID), { body: commands });
+    await rest.put(Routes.applicationGuildCommands(process.env.DISCORD_CLIENT_ID, process.env.TESTING_GUILD_ID), { body: commands });
     console.log('Successfully loaded commands.');
   } catch(err) {
     console.log(err);

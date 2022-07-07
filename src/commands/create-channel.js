@@ -18,6 +18,9 @@ const data = new SlashCommandBuilder()
         { name: 'Voice', value: ChannelType.GuildVoice }
       ));
 
+//TODO: Create categories (new function?) 
+//be able to add channels to specified categories
+
 module.exports = {
   data: data,
   async execute(interaction) {

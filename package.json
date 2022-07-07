@@ -4,7 +4,8 @@
   "description": "A very basic discord bot full of random commands that I thought were funny or useful or both",
   "main": "index.js",
   "scripts": {
-    "start": "node src/bot.js"
+    "start": "node src/bot.js",
+    "deploy": "node src/deploy-commands.js"
   },
   "keywords": [
     "discord",

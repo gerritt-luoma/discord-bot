@@ -33,10 +33,14 @@ module.exports = {
     const name = interaction.options.getString('name');
     const type = interaction.options.getNumber('type');
     try {
-      await guild.channels.create(name,{
+      const channel = await guild.channels.create(name,{
         type: type
       });
 
+      const parent = interaction.options.getChannel('category');
+      if(parent) {
+        channel.setParent(parent.id);
+      }
       await interaction.reply(`The channel ${name} was created with type ${type}`);
     } catch(err) {
       console.log(err);

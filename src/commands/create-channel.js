@@ -16,7 +16,12 @@ const data = new SlashCommandBuilder()
       .addChoices(
         { name: 'Text', value: ChannelType.GuildText },
         { name: 'Voice', value: ChannelType.GuildVoice }
-      ));
+      ))
+  .addChannelOption(option =>
+    option.setName('category')
+      .setDescription('Which category you would like to add this channel to')
+      .addChannelTypes(ChannelType.GuildCategory)
+      .setRequired(false));
 
 //TODO: Create categories (new function?) 
 //be able to add channels to specified categories

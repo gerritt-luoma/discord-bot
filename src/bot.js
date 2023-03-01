@@ -2,7 +2,7 @@ const { Events, Client, GatewayIntentBits, Collection } = require('discord.js');
 const { config } = require('dotenv');
 const path = require('node:path');
 const fs = require('node:fs');
-const { getSassyResponse } = require('./utils/openai');
+const { getResponse } = require('./utils/openai');
 config();
 
 // Initialize client
@@ -66,7 +66,7 @@ client.on(Events.MessageCreate, async message => {
             const regex = /<@.?[0-9]*?>/ig;
             const messageNoAts = message.content.replaceAll(regex, '');
             const messageClean = messageNoAts.trim();
-            const generatedResponse = await getSassyResponse(messageClean);
+            const generatedResponse = await getResponse(messageClean);
             await message.reply(generatedResponse);
         }
         catch (error) {

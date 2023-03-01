@@ -17,8 +17,8 @@ async function getResponse(message, key = null) {
     const response = await openai.createCompletion({
         model: 'text-davinci-003',
         prompt: `${message}\n\nThe first line of this prompt was a message that was just sent to you.  You are a bot named Jeff.  ${prompts[key] ? prompts[key] : process.env.MENTIONED_PROMPT}  Respond accordingly.`,
-        temperature: 0,
-        max_tokens: 120,
+        temperature: 0.7,
+        max_tokens: 240,
         top_p: 1.0,
         frequency_penalty: 0.0,
         presence_penalty: 0.0,

@@ -16,7 +16,7 @@ async function getResponse(message, key = null) {
     // I moved the default prompt to my environment variables to allow easy switching
     const response = await openai.createCompletion({
         model: 'text-davinci-003',
-        prompt: `${message}\n\nThe first line of this prompt was a message that was just sent to you.  You are a bot named Jeff.  ${prompts[key] ? prompts[key] : process.env.MENTIONED_PROMPT}  Respond accordingly.`,
+        prompt: `${message}\n\nThe first line of this prompt was a message that was just sent to you.  You are a bot named Jeff.  ${prompts[key] ? prompts[key] : process.env.MENTIONED_PROMPT} If any person is mentioned with an '@' please keep keep the '@' if you mention their name. Respond accordingly.`,
         temperature: 0.7,
         max_tokens: 240,
         top_p: 1.0,

@@ -63,14 +63,20 @@ client.on(Events.InteractionCreate, async interaction => {
 client.on(Events.MessageCreate, async message => {
     if (message.mentions.has(client.user, { ignoreEveryone: true, ignoreRepliedUser: true })) {
         try {
-            const regex = /<@.?[0-9]*?>/ig;
-            const messageNoAts = message.content.replaceAll(regex, '');
-            const messageClean = messageNoAts.trim();
-            const generatedResponse = await getResponse(messageClean);
+            // Feed message.cleanContent into jeff
+            let generatedResponse = await getResponse(message.cleanContent);
+
+            // Replace any username mention with their ID to complete the mention
+            message.mentions.parsedUsers.forEach(user => {
+                generatedResponse = generatedResponse.replace(`@${user.username}`, `<@${user.id}>`);
+            });
+
+            // Reply with message
             await message.reply(generatedResponse);
         }
         catch (error) {
             console.error(error);
+            await message.reply('You\'re not worth my time.  I definitely didn\'t have an error or anything.');
         }
     }
 });

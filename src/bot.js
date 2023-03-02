@@ -65,12 +65,15 @@ client.on(Events.MessageCreate, async message => {
         try {
             // Feed message.cleanContent into jeff
             let generatedResponse = await getResponse(message.cleanContent);
-
+            generatedResponse = generatedResponse.replace(process.env.PRODUCTION ? 'Jeff' : 'JeffJr', '');
             // Replace any username mention with their ID to complete the mention
-            message.mentions.parsedUsers.forEach(user => {
-                generatedResponse = generatedResponse.replace(`@${user.username}`, `<@${user.id}>`);
+            message.mentions.members.forEach(user => {
+                console.log(user.nickname);
+                console.log(user.displayName);
+                generatedResponse = generatedResponse.replace(`@${user.nickname}`, `<@${user.id}>`);
+                generatedResponse = generatedResponse.replace(`@${user.displayName}`, `<@${user.id}>`);
             });
-
+            console.log(generatedResponse);
             // Reply with message
             await message.reply(generatedResponse);
         }

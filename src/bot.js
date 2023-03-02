@@ -65,11 +65,9 @@ client.on(Events.MessageCreate, async message => {
         try {
             // Feed message.cleanContent into jeff
             let generatedResponse = await getResponse(message.cleanContent);
-            generatedResponse = generatedResponse.replace(process.env.PRODUCTION ? 'Jeff' : 'JeffJr', '');
+            generatedResponse = generatedResponse.replaceAll(`@${process.env.PRODUCTION ? 'Jeff' : 'JeffJr', ''}`);
             // Replace any username mention with their ID to complete the mention
             message.mentions.members.forEach(user => {
-                console.log(user.nickname);
-                console.log(user.displayName);
                 if (user.nickname) {
 
                     generatedResponse = generatedResponse.replace(`@${user.nickname}`, `<@${user.id}>`);
@@ -78,7 +76,6 @@ client.on(Events.MessageCreate, async message => {
                     generatedResponse = generatedResponse.replace(`@${user.displayName}`, `<@${user.id}>`);
                 }
             });
-            console.log(generatedResponse);
             // Reply with message
             await message.reply(generatedResponse);
         }

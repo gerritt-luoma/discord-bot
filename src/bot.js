@@ -70,8 +70,13 @@ client.on(Events.MessageCreate, async message => {
             message.mentions.members.forEach(user => {
                 console.log(user.nickname);
                 console.log(user.displayName);
-                generatedResponse = generatedResponse.replace(`@${user.nickname}`, `<@${user.id}>`);
-                generatedResponse = generatedResponse.replace(`@${user.displayName}`, `<@${user.id}>`);
+                if (user.nickname) {
+
+                    generatedResponse = generatedResponse.replace(`@${user.nickname}`, `<@${user.id}>`);
+                }
+                else {
+                    generatedResponse = generatedResponse.replace(`@${user.displayName}`, `<@${user.id}>`);
+                }
             });
             console.log(generatedResponse);
             // Reply with message
